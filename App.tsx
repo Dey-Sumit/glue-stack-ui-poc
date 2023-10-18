@@ -63,10 +63,13 @@ import {
   AddIcon,
   FabIcon,
   FabLabel,
+  StatusBar,
 } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 import { SafeAreaView } from "react-native";
 import React, { useState } from "react";
+import AuthStack from "./src/navigators/AuthStack";
+import { NavigationContainer } from "@react-navigation/native";
 const Example = () => {
   return (
     <ScrollView
@@ -225,11 +228,19 @@ const Example = () => {
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <GluestackUIProvider config={config}>
-        <Example />
+    <GluestackUIProvider config={config} colorMode="light">
+      <NavigationContainer>
+        {/* <SafeAreaView
+          style={{
+            flex: 1,
+          }}
+        > */}
+        <AuthStack />
+        {/* </SafeAreaView> */}
+      </NavigationContainer>
+      {/* <Example /> */}
 
-        {/* 
+      {/* 
         <Image
           size="md"
           borderRadius="$none"
@@ -237,8 +248,7 @@ export default function App() {
             uri: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
           }}
         /> */}
-      </GluestackUIProvider>
-    </SafeAreaView>
+    </GluestackUIProvider>
   );
 }
 
