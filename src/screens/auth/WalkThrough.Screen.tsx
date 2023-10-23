@@ -10,22 +10,24 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type Props = NativeStackScreenProps<AuthStackParams, "WalkthroughScreen1" | "WalkthroughScreen2">;
 
-const BACKGROUND_IMAGE_URI =
-  "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2565";
+const BACKGROUND_IMAGE_URI_1 =
+  "https://images.unsplash.com/photo-1637775297509-19767f6fc225?auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHBhdHRlcm4lMjBibGFja3xlbnwwfHwwfHx8MA%3D%3D&w=800";
+
+const BACKGROUND_IMAGE_URI_2 =
+  "https://images.unsplash.com/photo-1637946175559-22c4fe13fc54?auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fHBhdHRlcm4lMjBibGFja3xlbnwwfHwwfHx8MA%3D%3D&w=800";
+// const BACKGROUND_IMAGE_URI =
+//   "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2565";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const WalkthroughScreen = ({ route, navigation }: Props) => {
-  console.log("route.params.screenNumber", route.params.screenNumber);
-
+  const currentScreenNumber = route.params.screenNumber;
   const handleNext = (action: "SKIP" | "NEXT") => {
     if (action === "SKIP") {
       navigation.navigate("LoginScreen");
       return;
     }
-
-    const currentScreenNumber = route.params.screenNumber;
 
     if (currentScreenNumber === 1) {
       navigation.navigate("WalkthroughScreen2", { screenNumber: 2 });
@@ -67,9 +69,9 @@ const WalkthroughScreen = ({ route, navigation }: Props) => {
       <StatusBar translucent style="light" />
 
       <Animated.Image
-        entering={FadeInDown.duration(2000)}
+        entering={FadeInDown.duration(1500)}
         source={{
-          uri: BACKGROUND_IMAGE_URI,
+          uri: currentScreenNumber === 1 ? BACKGROUND_IMAGE_URI_1 : BACKGROUND_IMAGE_URI_2,
         }}
         layout={FadingTransition}
         style={{

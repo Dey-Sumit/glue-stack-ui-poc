@@ -228,7 +228,7 @@ const Example = () => {
 
 export default function App() {
   return (
-    <GluestackUIProvider config={config} colorMode="light">
+    <GluestackUIProvider config={config} colorMode="dark">
       <NavigationContainer>
         {/* <SafeAreaView
           style={{

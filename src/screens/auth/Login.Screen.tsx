@@ -3,19 +3,28 @@ import { StyleSheet } from "react-native";
 import { VStack, Box, Button, ButtonText, Center, HStack, Text } from "@gluestack-ui/themed";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AuthStackParams } from "../../navigators/AuthStack";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
   navigation: NativeStackScreenProps<AuthStackParams, "LoginScreen">;
 }
 
 const LoginScreen: React.FC<Props> = ({ navigation }: Props) => {
+  const { top: SAFE_AREA_TOP } = useSafeAreaInsets();
   const handleLogin = () => {
     // handle login logic here
   };
 
   return (
-    <VStack height="100%" py="$12" px="$8" gap="$10" backgroundColor="$white">
-      <Center borderWidth={1} flex={1}>
+    <VStack
+      flex={1}
+      pb="$10"
+      px="$4"
+      gap="$10"
+      backgroundColor="$backgroundDark950"
+      pt={SAFE_AREA_TOP}
+    >
+      <Center borderWidth={1} flex={1} p="$6">
         <Text>
           This is the Login Screen. You can add your login form here. For now, we will just have a
           button to simulate login.
@@ -23,7 +32,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }: Props) => {
       </Center>
 
       <HStack justifyContent="center">
-        <Button onPress={handleLogin} width="100%" backgroundColor="$backgroundDark800">
+        <Button onPress={handleLogin} width="100%">
           <ButtonText>Login with Google</ButtonText>
         </Button>
       </HStack>
